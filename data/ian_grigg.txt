@@ -1,0 +1,449 @@
+The Ricardian Contract
+
+Ian Grigg July 6, 2004
+
+Abstract
+
+Describing digital value for payment systems is not a trivial task. Simplistic methods of using numbers or country codes to describe currencies, and ticker tape symbols to issue bonds, shares, and other financial instruments soon run into shortcomings in their ability to handle dynamic and divergent demands. The seemingly arbitrary variations in the meanings of different instruments are best captured as contracts between issuers and holders. Thus, the digital issuance of instruments can be viewed as the issuance of contracts.
+
+This paper proposes that the contract is the issue. A document form is described that encompasses the inherent contractual nature of the financial instrument yet copes with the requirements of being an integral part of a payment system.
+
+1. Introduction
+
+Little work has been done on classification and description of value in the field of financial cryptography. This paper presents the Ricardian Contract, a method to identify and describe issues of financial instruments as contracts[1]. It was originally developed by Ian Grigg and Gary Howland as part of the Ricardo payment system.
+
+1.1. The Origins
+
+The original application was a bond trading system[2]. For trading, a basic component is a transfer or payment system which receives and acts on transfer instructions to move instruments (cash, bonds) from one account to another. Each instruction therefore must identify the instrument.
+
+A means was required to capture, identify, and describe the traded instruments. There are thousands of bonds, and potentially millions of other instruments that could be issued and traded, and each has unique characteristics that are not amenable to compression into databases. To such a system, cash is no different to bonds, and requires the same description.
+
+1.2. The Problem
+
+When someone issues a currency (or bond or share) over the Internet, what is it? What does the recipient have?
+
+Few systems for issuance of value (payment systems) treat these questions adequately. They generally refer to existing external units of currency and tidy up loose edges in a user agreement. For example, Paypal, an issuer of dollars, relies on the familiarity of the US dollar to define much of its service offering. Gold issuers lean more heavily on their user agreements as the metal unit is not so familiar.
+
+For trading, it is not sufficient to refer to well-known familiar references, as each instrument is different in finicky ways and these differences matter to traders. Even with currencies, however, the user has difficulty in determining the security and safety of one dollar with respect to another.
+
+Classification by numbers or symbols is a starting point. Almost all systems of digital issuance identify their basic issue by allocating numbers or letters as currencies (for example, 840, "USD", "AUG" [3]). These systems runs into trouble quickly.
+
+An issuer with many currencies or many issuers with the same nominal currency raises difficult questions. Can an issuer have two or more dollar units? For example, within ISO3166-1, there are three different US dollars: 840/USD (cash), 998/USS (same day), and 997/USN (next day). Similarly, how does one Digital Gold Currency ("DGC") differentiate his gold over that of another issuer, when all are known as "AUG"?
+
+1.3. The Solution
+
+As bonds are, at their essence, contracts between issuers and users, our problem reduces to one of issuing contracts. Whereas other issues have contracts, our issues are contracts.
+
+Our innovation is to express an issued instrument as a contract, and to link that contract into every aspect of the payment system. By this process, a document of some broad utility (readable by user and program) is drafted and digitally signed by the issuer of the instrument. This document, the Ricardian Contract, forms the basis for understanding an issue and every transaction within that issue.
+
+By extension, all issues of value, such as currencies, shares, derivatives, loyalty systems and vouchers, can benefit from this approach.
+
+1.4. Structure
+
+This paper is structured as follows. In Section 2, we discuss conventional approaches to identifying and describing issuance, and explore questions and doubts surrounding these approaches. Then, in Section 3, a design to express issuance as a contract is presented. Finally, in Section 4, concluding remarks are added.
+
+2. Issues of Value as Contracts
+
+2.1. A First Generation Scheme
+
+Consider the case of the pioneering digital cash scheme, eCash, as originally fielded by DigiCash BV. The first valuable currency, issued by Mark Twain Bank of the USA, was identified with the number 4. Lore has it that the early system allocated a small sequential number to each currency. Test systems had already acquired 0,1,2,3 and thus 4 was the next. DigiCash's marketing assumptions then changed to assume one issue per country. In time, this scheme was adjusted to issue currencies numbered after international dialling codes (e.g., 49 for Germany, 61 for Australia). The shortfalls of this scheme became apparent, so a new design was created [4]. One 32 bit number to describe the issue was used, on the pragmatic assumption that this would be large enough to cover foreseeable eventualities.
+
+Yet the strains of one issuer, one currency were obvious almost immediately. A more advanced scheme could use a tuple of (issuer, currency) to describe a system whereby each issuer is empowered in some sense to issue multiple competing currencies[5]. It is easy to generalise this system by adding additional elements to the tuple: (issuer, type, identifier) tuple[6]. For example, a zero coupon bond issued by the Joint Universal and Nationwide Keiretsu that pays out in January of 2100 might have a tuple of (JUNK, zero, Jan_2100).
+
+2.2. The Trouble with Numbers
+
+Numbers as a space for identifying digital instruments are limiting, and having tuples as an extension is not really an answer.
+
+Firstly, what do they describe? In the case of electronic cash systems, they can describe currencies and issuers. Is it one or both, and how do we generalise to other aspects? Secondly, what surety do we have that what is described is accurate? Whilst a lot can be achieved by simply relying on the reputation of the issuer, financial insiders know that the real value is expressed in the detail and the reliability of the claim. Thirdly, how are the numbers derived? Is a central registry required, or can any issuer of digital value acquire a number as per local requirements? Finally, is there a limit to the space? Integer numbers as expressed in packets are generally limited to some quantity of bits, such as 32. For practical software engineering, there need to be limits, but do these limits need to limit the business possibilities?
+
+2.3. The Challenge of Success
+
+Any successful system will be used in ways that make it appear to be broken. As software engineers, we need to present our inventions with the humility of toolmakers for future generations of builders, not as bureaucrats planning the zoning of the digital commerce space.
+
+What happens when we have gone through the early adopters, dominated the moms and pops, and competition is fiercely turning onto our elderly retired set? Imagine mints in the pockets of billions of idle game-playing senior citizens. Or, imagine a world with an issuer of digital loyalty points on every parking meter, or where students must pay for tuition with shares of future earnings. Already we have seen popular musicians selling bonds backed by their music[7], and proposals for software bug fixes financed by securitized issues to anonymous users[8].
+
+2.4. The Zero Coupon Bond
+
+Consider the zero coupon bond, an instrument that pays a face value of a currency on a given date. The zero is perhaps the simplest general financial instrument in common use, and it formed the benchmark for our design.
+
+To describe the face value, the currency of the face value, and the expiry date of this bond, we would add additional elements to the above tuple. But this is only a beginning. In his description of Eurobonds, Noel Clarke expects dozens or hundreds of fields[9]. If we examine just one of these characteristics, for example Event-Related Put Options, we find that a bond needs to describe what happens in the event of:
+
+a hostile or friendly takeover of the issuer,
+
+a takeover by the issuer of another party,
+
+a recapitalisation,
+
+a repurchase program by the issuer of its own shares, or
+
+a distribution of assets above a certain percentage of the issue's net worth.
+
+These items bind tightly to the instrument in question, but they represent difficulties to the software architect. We can make a number of observations.
+
+Firstly, each event is not simple. Today, one may be able to shoehorn the notion of "a hostile or friendly takeover" into a single name-value pair, but this would not survive the evolving scene of regulation and litigation that applies to such events.
+
+Secondly, there is no reason to believe that the above list is complete.
+
+Thirdly, not only is it going to be hard to design a single field of any sort to cope with these, they are mostly going to be full of legal text.
+
+Consider a data layout point of view. To describe the document that forms the basis of a bond we will need a tree-structured database of tuples, as a minimum. More, that layout is only going to work for one instrument, or one extremely tight, nearly fungible set of instruments.
+
+2.5. Cash is King
+
+Currencies, or cash, might be that tight set. After all, a dollar is a dollar is a dollar. Can we describe money with some simple set of tuples? Even for cash, we argue that a layout of tuples is not sufficient.
+
+Take the case of a digital dollar issued by a bank. The digital dollars would be derivatives, often backed by deposits in the same amount. This may be sufficient for marketing purposes but it would not survive a serious financial analysis.
+
+Compare such derivative dollars to those issued by the US Federal Reserve Board. The Fed has yet to deny acceptance of its notes if presented with same, if only as a claim on another bunch of the same instrument, or for taxation liabilities. Radical interpretations aside, the Fed has never filed for bankruptcy and remains a pretty solid bet.
+
+The same cannot be said of just any bank issuer of derivative dollars. Its digital dollars would be backed by deposits with ... the very same institution. Such a bank can close its doors at any time, and, given the history of the banking sector in the 20th Century, an analyst should take this risk seriously. Further, in the USA at least, the FDIC has already ruled that funds so held on a user's PC are considered to be uninsured deposits[10].
+
+This is not to suggest that any given bank is about to close doors, but to ask what happens when an issuer does indeed default on its promise?
+
+Any holder of any asset will carry a risk. A holder of electronic dollars will carry the risk that the issuer fails, and the holder of another issuer's dollars carries a similar, comparable, but distinct risk. Each of those risks result in a cost, which should be subtracted from the face value of the dollar to calculate a comparative value. In this risk distinction lies the inescapable fact that any given dollar is not of constant value, even when measured against some well-known dollar such as that issued by the Federal Reserve.
+
+2.6. The Fine Print of the Contract
+
+If there is no such thing as a single dollar, what is left? Clearly, we must describe each and every dollar for what it is. This would seem to be a task of fine print and detail, and, indeed, every distinct issued currency is a distinct contract between the issuer and the holder.
+
+A contract can encapsulate the detail. Consider the original sovereign currency contracts, in which the issuer promised to pay the bearer in ounces of precious metal. That is four datum in the contract already: which sovereign, "pay to bearer," what to pay, and how much of it.
+
+So it is with every bond, every currency, and any financial instrument of any complexity. In fact, within the digital domain, the question of how to treat a financial instrument reduces in great part to how to treat a contract.
+
+Or, an issue is a contract. Issues within other payment systems have contracts but only as adjunct documents such as user agreements. Often, their role and importance is subject to battles; marketing wants them hidden, while Legal asks for them to be thrust in the user's face at all times.
+
+Once we accept that the issue is a contract, the task becomes simple: create a contract that can be linked into the payment system as the centerpiece. That is the subject of the next section.
+
+3. A Digital Contracts System for Issuance
+
+Almost all aspects of Ricardian Contracts are best seen by examining examples, and this section only briefly covers the salient details, before discussing the ramifications. Examples can be found at webfunds.org/ricardo/contracts/ .
+
+3.1. Definition
+
+A Ricardian Contract can be defined as a single document that is a) a contract offered by an issuer to holders, b) for a valuable right held by holders, and managed by the issuer, c) easily readable by people (like a contract on paper), d) readable by programs (parsable like a database), e) digitally signed, f) carries the keys and server information, and g) allied with a unique and secure identifier.
+
+In the simplest possible terms, a Ricardian Contract is a document defining a type of value for issuance over the Internet[11]. It identifies the Issuer, being the signatory, and any terms and clauses the Issuer sees fit to add in to make the document stand as a contract.
+
+The same document has to be both readable by people and parsable by programs. The Ricardian Contract is formatted as a text file that can be easily read (displayed or printed), and programs can convert it into internal forms for searching for name-value pairs. It includes a special section for each type of contract, such as bond, share, currency, etc. Further sections within describe, in program-parsable terms, usage of decimal points, titles, and symbols.
+
+As legal signatory, the Issuer signs the document in the OpenPGP cleartext form with his contract signing key[12]. He includes the full chain of OpenPGP keys within the document to permit programs to directly verify and authenticate.
+
+To uniquely identify the contract, any user can calculate a canonical message digest over the clearsigned document. This message digest is included in all records of transactions, and provides a secure (unforgeable) link from the document to the accounting of the issue.
+
+E.g., e3b445c2a6d82df81ef46b54d386da23ce8f3775 is the full message digest for Systemics Inc's issue of prepaid services dollars. Commonly called a hash, the message digest is a cryptographic technique to create a relatively small number that is one to one with the document. That is, for each document, there is only one hash, and the hash refers uniquely to that document. The algorithm is the well-known standard, SHA1.
+
+3.2. Some Observations
+
+The following observations highlight how strong the result is.
+
+Hash Limits Frog-Boiling. A gradual change in contract by the stronger party over time is known as frog-boiling. The stronger party is generally the issuer, and can be expected to change the contract if there is a benefit. This is a frequent attack. One result of the use of the hash identifier is that neither party can change the contract arbitrarily or surreptitiously.
+
+To see this is true, we need to examine the records that refer to the hash. An application can sign all important records (e.g., payments, tokens, receipts, balances), and these signed records include the hash of a Ricardian Contract. The hash within the record cannot be changed without losing its ability to pass a test of signature validity. Likewise, the contract cannot be changed without losing its relationship to records already signed and delivered. In other words, every record, held by every user, incorporates an unalterable copy of that hash. Any change to the contract creates a new hash, and that new hash is not the one which the users have or value.
+
+This crystallises the contract for both parties, stopping the stronger party from modifying the contract subtly at some later stage. To some extent, this redresses the imbalance of power between provider and customer in the offering of a form contract. The lesser party has no option to negotiate, but neither has the greater party the option to claim a distinct contract at a later time. The limitation comes at some cost as it can be a nuisance for the support team of that financial instrument.
+
+The Ricardian PKI Delivers Clarity. Ricardian Contracts carry their own Public Key Infrastructure ("PKI") with them. The Issuer's top level public key is included in the contract, and it signs his contract-signing key, also included. The contract-signing key signs the contract itself.
+
+This achieves several things. Firstly, client software can check the entire digital signature chain in one automated sequence.
+
+Secondly, there is no need for a complex multi-party PKI. All the keys are present, and there is no need to go looking for them on the net. This eliminates substitution attacks, whereby a key that might pass some checks could be inserted in some key lookup phase. It also reduces costs dramatically.
+
+Thirdly, the canonical hash of the contract also represents a signature on the contract. It is recorded in all relevant records, and thus entangles the contract with those activities[13]. Once the contract has been in play for a while, it establishes its provenance through presence and reliance by the user public. This provides far more persuasive evidence than the issuer's signature itself; once the issuer and the public have spent time and money relying on the contract, via the hash, it is hard for the issuer to renege on the nature of the contract or his signature.
+
+The result is a PKI that delivers strong end-to-end reliability, based on a single document. This is simply not present in other designs for PKIs[14]. This reliability pays off in the dispute resolution phase, where, we suggest, the Ricardian Contract can stand alone on its merits and requires no complex descriptions of PKI, digital signatures, or references to uncertain third parties to bolster its provenance. By including the keys, we can draw a couple of simple lines within the contract, asserting "this key signs that key, and that latter signs the contract. The first key is the top-level key of the individual that signed this contract. That's the whole story, mi'lud."
+
+Validating the Issuer's Key. All good crypto protocols divide into two parts, the first of which says to the second, "trust this key completely."
+
+The top-level key of the Issuer ultimately authenticates the contract. The keys and other information in the contract also permit a protocol such as SOX to bootstrap a strongly secured connection to the server[15].
+
+How then to verify that this ultimate key is really the Issuer's? This is not difficult. The business process of digital issuance involves a great deal of relationship-building between Issuers and Users. Many different interactions involve chances to establish trust. For example, from his web site, the Issuer can publish the contract, keys and hashes, and have other sites mirror them. The value so issued will be distributed via payments that include the hash. An already trusted party usually delivers these payments. The payments validly identify the contract, and derive their own validity, via the hash.
+
+Contrast this to assumptions in the x.509 PKI behind SSL/HTTPS browsing (the following is highly debatable, but is presented for comparison only). In that PKI, it was originally claimed that a user would present her credit card to sites with which she had no prior relationship and no way for her to establish the provenance of the site's key. Thus, a trusted third party, the Certificate Authority, was put in place to confirm the key.
+
+Payments, trading and matters of finance are fundamentally relationship-rich. The nature of money and finance is that participants always conduct their own due diligence, they prefer to listen to peers they already trust, and do not readily accept the word of an independent party. Thus, there is no place for a central third party to stand in and authenticate players. Before the user desires to place any value on a given payment, she has almost certainly been made aware of the contract via other means.
+
+Presumption of Possession. The use of the hash as an identifier is a compromise as it is unintelligible to humans[16]. Yet this very compromise delivers an unexpected benefit: Use of the issue leads to a presumption that the user has the contract. To use an issue of value, such as a currency, the user must have the hash in the applicable records. That is, if the user receives a payment, that payment record will include the hash. As the hash is not descriptive, this implies that the user has the contract in order to interpret the issue.
+
+To see that this is true, imagine having a record with the hash but without having the contract. The first thing the user will need is a database of parameters telling her what the hash refers to. Unlike a payment in 10 of "GBP", a payment of 1000 in "972097bb..." is not intelligible.
+
+Yet how could software predict what the user needs to know about the hash? Very quickly it becomes apparent that the software is better off storing the source of the information – the full contract itself – as it removes an unlimited degree of complexity in storing intermediate or secondary information.
+
+Software can still function with only the hash. However, it would be entirely blind to the semantics of the instrument. Such a cavalier approach might be acceptable for communications and storage, but for user software, it is equivalent to a traumatic failure. To cope with this, the client-side software takes especial care to acquire and keep contracts. Hence, we can state the presumption with some degree of confidence: in a functioning system, the user has available the full Ricardian Contract (albeit under software control).
+
+This is only a small step for the client software, but is a giant leap forward for the relationship between the issuer and the holder. Specifically, having a strong presumption that the user has the full contract available will simplify many legal aspects about the issuer's responsibilities. (We suggest and thus acknowledge the legal ramifications of the term presumption, but neither space nor expertise permits more in this paper.)
+
+3.3. The Four Corners of the Page
+
+The Ricardian Contract delivers a rich source of primary, complete information. The full story is right there in textual form, in parsable parameters, and in the signature chain. Thus, within a dispute, a hostile legal attack has less room to manoeuvre, and can only confirm the facts as laid out in the contract.
+
+Our intent is that the contract is the beginning and the end of the discussion; we call this principle the rule of one contract. The legal fraternity refers to "the contract being bounded by the four corners of the page." By showing how we have carefully laid out a readable document, with a verifiable digital signature, and an unforgeable identifier linking to every record, we can more readily ask the judiciary to accept that the single document which is being presented is indeed the valid contract agreed to by the parties.
+
+4. Conclusion
+
+The contract is the keystone of issuance[17]. Our innovation is to express all the salient details of an issuance as an unforgeable contract, unforgeably linked into every action within a payment system. In this way, financial innovation can develop along the lines it always has done – by means of innovation within contracts. By translating the institution of the contract into the digital domain, we build upon centuries' and even millenia' worth of experience in documenting, sharing and disputing the meaning of agreements between parties.
+
+4.1. The Challenge of Complexity
+
+To capture complexity, we can put documents such as contracts into electronic form and sign them using digital signature technologies such as OpenPGP. The result is a reasonable analogue of the paper and ink contracts that most people and businesses are familiar with, bolstered with cryptographic integrity.
+
+With the hash as the identifier, software can now uniquely identify a given financial arrangement and can confirm a strong chain of signatures. The hash strongly implies the user has the contract available at all times, and it cannot be changed without being noticed.
+
+The Ricardian Contract delivers one huge benefit to the issuer – clarity in many legal and customer support questions. The user benefits from lower overall costs, and better presentation of information, within a more consistent framework.
+
+4.2. Lessons Learnt
+
+The form has been in successful use since 1996. Since that time, it has delivered about 20 financial instruments without failure.
+
+Disputes. The Ricardian Contract has appeared in two distinct forums of dispute resolution to resolve claims[18]. Anecdotally, each claim was resolved directly and efficiently, and without undue fuss, simply by referring to the applicable Ricardian Contract.
+
+Automation. Relatively little has needed to be automated. In practice, fields have been inserted and standardised so that programs can extract decimalisation (dollars versus cents), labels for units (USD versus $), and titles for the issuer and the issue. In contrast to expectations, there has been no demand to parse every field.
+
+Cost. The cost of the concept has compared favourably with that incurred with other payment systems. The preparation of the contract text carries some costs, but no more so than a user agreement. OpenPGP infrastructure requirements (keys and signing) add some minor costs to issuers but they are easily offset by the benefits of risk reduction from contract distribution. Custom signing editors have helped to reduce those costs[19].
+
+4.3. Challenges for the Future
+
+Layering. Layering of contracts is an impending need. Many businesses can take a standard and defined set of terms and draw on them directly. Other contracts result from earlier contracts and need to reference them.
+
+XML. Initial efforts suggested that XML would break the rule of one contract, but it seems that we will need something better than the archaic INI format[20]. One recent proposal, the XML Voucher, stops short of presenting itself as a contract[21].
+
+Law of Contract. The treatment of the Ricardian Contract as a contract may raise more legal questions than it answers. For example, is this form indeed a contract? How do distinct jurisidictions view the concept (common law, civil law, UCC, Koranic code)? Is this a negotiated or a form contract? When did the user accept the contract? How strong, or rebuttable, is the presumption that the user has the contract?
+
+Smart Contracts. By unifying all information in a program-readable file, there is the enhanced potential of smart contracts[22]. We have not gone further in this direction than methods to handle decimals. This is partly for lack of demand, and partly because it is not clear how a court would treat a computer program presented as a contract.
+
+5. References
+
+Ian Grigg
+
+Systemics, Inc.
+
+iang@iang.orgTriple Entry Accounting
+
+Ian Grigg Revision: 1.7 - Work in Progress
+
+December 25, 2005
+
+Abstract
+
+The digitally signed receipt, an innovation from financial cryptography, presents a challenge to classical double entry bookkeeping. Rather than compete, the two melded together form a stronger system. Expanding the usage of accounting into the wider domain of digital cash gives 3 local entries for each of 3 roles, the result of which I call triple entry accounting.
+
+This system creates bullet proof accounting systems for aggressive uses and users. It not only lowers costs by delivering reliable and supported accounting, it makes much stronger governance possible in a way that positively impacts on the future needs of corporate and public accounting.
+
+Introduction
+
+This paper brings together financial cryptography innovations such as the Signed Receipt with the standard accountancy techniques of double entry bookkeeping.
+
+The first section presents a brief backgrounder to explain the importance of double entry bookkeeping. It is aimed at the technologist, and accountancy professionals may skip this. The second section presents how the Signed Receipt arises and why it challenges double entry bookkeeping.
+
+The third section integrates the two together and the Conclusion attempts to predict wider ramifications into Governance issues.
+
+Credits
+
+This paper benefitted from comments by Graeme Burnett and Todd Boyle[1].
+
+A Very Brief History of Accounting
+
+Accounting or accountancy is these days thought to go back to the genesis of writing; the earliest discovered texts have been deciphered as simple lists of the counts of animal and food stock. The Sumerians of Mesopotamia, around 5000 years ago, used Cuneiform or wedge shaped markings as a base-60 number form, which we still remember as seconds and minutes, and squared, as the degrees in a circle. Mathematics and writing themselves may well have been derived from the need to add, subtract and indeed account for the basic assets and stocks of early society.
+
+Single Entry
+
+Single entry bookkeeping is how 'everyone' would do accounting: start a list, and add in entries that describe each asset. A more advanced arrangement would be to create many lists. Each list or 'book' would represent a category, and each entry would record a date, an amount, and perhaps a comment. To move an asset around, one would cross it off from one list and enter it onto another list.
+
+Very simple, but it was a method that was fraught with the potential for errors. Worse, the errors could be either accidental, and difficult to track down and repair, or they could be fraudulent. As each entry or each list stood alone, there was nothing to stop a bad employee from simply adding more to the list; even when discovered there was nothing to say whether it was an honest mistake, or a fraud.
+
+Accounting based on single entry bookkeeping places an important limitation on the trust of the books. Likely, only the owner's family or in times long past, his slaves could be trusted with the enterprise's books, leading to a supportive influence on extended families or slavery as economic enterprises.
+
+Double Entry
+
+Double Entry bookkeeping adds an additional important property to the accounting system; that of a clear strategy to identify errors and to remove them. Even better, it has a side effect of clearly firewalling errors as either accident or fraud.
+
+This property is enabled by means of three features, being the separation of all books into two groups or sides, called assets and liabilities, the redundancy of the duplicative double entries with each entry having a match on the other side, and the balance sheet equation, which says that the sum of all entries on the asset side must equal the sum of all entries on the liabilities side.
+
+A correct entry must refer to its counterparty, and its counterpart entry must exist on the other side. An entry in error might have been created for perhaps fraudulent reasons, but to be correct at the local level, it must refer to its counterparty book. If not, it can simply be eliminated as an incomplete entry. If it does refer, the existence of the other entry can be easily confirmed, or indeed recreated depending on the sense of it, and the loop is thus closed.
+
+Previously, in single entry books, the fraudster simply added his amount to a column of choice. In double entry books, that amount has to come from somewhere. If it comes from nowhere, it is eliminated above as an accidental error, and if it comes from somewhere in particular, that place is identified. In this way, fraud leaves a trail; and its purpose is revealed in the other book because the value taken from that book must also have come from somewhere.
+
+This then leads to an audit strategy. First, ensure that all entries are complete, in that they refer to their counterpart. Second, ensure that all movements of value make sense. This simple strategy created a record of transactions that permitted an accountancy of a business, without easily hiding frauds in the books themselves.
+
+Which Came First - Double Entry or the Enterprise?
+
+Double Entry bookkeeping is one of the greatest discoveries of commerce, and its significance is difficult to overstate. Historians think it to have been invented around the 1300s AD, although there are suggestions that it existed in some form or other as far back as the Greek empire. The earliest strong evidence is a 1494 treatise on mathematics by the Venetian Friar Luca Pacioli[2]. In his treatise, Pacioli documented many standard techniques, including a chapter on accounting. It was to become the basic text in double entry bookkeeping for many a year.
+
+Double Entry bookkeeping arose in concert with the arisal of modern forms of enterprise as pioneered by the Venetian merchants. Historians have debated whether Double Entry was invented to support the dramatically expanded demands of the newer ventures then taking place surrounding the expansion of city states such as Venice or whether Double Entry was an enabler of this expansion.
+
+Our experiences weigh in on the side of enablement. I refer to the experiences of digital money issuers. Our own first deployment of a system was with a single entry bookkeeping system. Its failure rate even though coding was tight was such that it could not sustain more than 20 accounts before errors in accounting crept in and the system lost cohesion. This occurred within weeks of initial testing and was never capable of being fielded. The replacement double entry system was fielded in early 1996 and has never lost a transaction (although there have been some close shaves[3]).
+
+Likewise, the company DigiCash BV of the Netherlands fielded an early digital cash system into a bank in the USA. During its testing period, the original single entry accounting system had to be field replaced with a double entry system for the same reason – errors crept in and rendered the accounting underneath the digital cash system unreliable.
+
+Another major digital money system lasted for many years on a single entry accounting system. Yet, the company knew it was running on luck. When a cracker managed to find a flaw in the system, an overnight attack allowed the creation of many millions of dollars worth of value. As this was more than the contractual issue of value to date, it caused dramatic contortions to the balance sheet, including putting it in breach of its user contract and at dire risk of a 'bank run'. Luckily, the cracker deposited the created value into the account of an online game that failed shortly afterwards, so the value was able to be neutralised and monetarily cleansed, without disclosure, and without scandal.
+
+In the opinion of this author at least, single entry bookkeeping is incapable of supporting any enterprise more sophisticated than a household. Given this, I suggest that evolution of complex enterprises required double entry as an enabler.
+
+Computing Double Entry in Quick Time
+
+Double Entry has always been the foundation of accounting systems for computers. The capability to detect, classify and correct errors is even more important to computers than it is to humans, as there is no luxury of human intervention; the distance between the user and the bits and bytes is far greater than the distance between the bookkeeper and the ink marks on his ledgers.
+
+How Double Entry is implemented is a subject in and of itself. Computer science introduces concepts such as transactions, which are defined as units of work that are atomic, consistent, isolated, and durable (or ACID for short). The core question for computer scientists is how to add an entry to the assets side, then add an entry to the liabilities side, and not crash half way through this sequence. Or even worse, have another transaction start half way through. This makes more sense when considered in the context of the millions of entries that a computer might manage, and a very small chance that something goes wrong; eventually something does, and computers cannot handle errors of that nature very well.
+
+For the most part, these concepts simply reduce to "how do we implement double entry bookkeeping?" As this question is well answered in the literature, we do no more than mention it here.
+
+A Slightly Less Brief History of the Signed Receipt
+
+Recent advances in financial cryptography have provided a challenge to the concept of double entry bookkeeping. The digital signature is capable of creating a record with some strong degree of reliabilty, at least in the senses expressed by ACID, above. A digital signature can be relied upon to keep a record safe, as it will fail to verify if any details in the record are changed.
+
+If we can assume that the the record was originally created correctly, then later errors are revealed, both of an accidental nature and of fraudulent intent. (Computers very rarely make accidental errors, and when they do, they are most normally done in a clumsy fashion more akin to the inkpot being spilt than a few numbers.) In this way, any change to a record that makes some sort of accounting or semantic sense is almost certainly an attempt at fraud, and a digital signature makes this obvious.
+
+The Digital Signature and Digital Cash
+
+A digital signature gives us a particular property, to whit:
+
+"at a given point in time, this information was seen and marked by the signing computer."
+
+There are several variants, with softer and harder claims to that property. For example, message digests with entanglement form one simple and effective form of signature, and public key cryptosystems provide another form where signers hold a private key and verifiers hold a public key[4]. There are also many ways to attack the basic property. In this essay I avoid comparisons, and assume the basic property as a reliable mark of having been seen by a computer at some point in time.
+
+Digital signatures then represent a new way to create reliable and trustworthy entries, which can be constructed into accounting systems. At first it was suggested that a variant known as the blinded signature would enable digital cash[5]. Then, certificates would circulate as rights or contracts, in much the same way as the share certificates of old and thus replace centralised accounting systems[6]. These ideas took financial cryptography part of the way there. Although they showed how to strongly verify each transaction, they stopped short of placing the the digital signature in an overall framework of accountancy and governance. A needed step was to add in the redundancy implied in double entry bookkeeping in order to protect both the transacting agents and the system operators from fraud.
+
+The Initial Role of a Receipt
+
+Designs that derived from the characteristics of the Internet, the capabilities of cryptography and the needs of governance led to the development of the signed receipt[7]. In order to develop this concept, let us assume a simple three party payment system, wherein each party holds an authorising key which can be used to sign their instructions. We call these players Alice, Bob (two users) and Ivan (the Issuer) for convenience.
+
+When Alice wishes to transfer value to Bob in some unit or contract managed by Ivan, she writes out the payment instruction and signs it digitally, much like a cheque is dealt with in the physical world. She sends this to the server, Ivan, and he presumably agrees and does the transfer in his internal set of books. He then issues a receipt and signs it with his signing key. As an important part of the protocol, Ivan then reliably delivers the signed receipt to both Alice and Bob, and they can update their internal books accordingly.
+
+The Receipt is the Transaction
+
+Our concept of digital value sought to eliminate as many risks as possible. This was derived simply from one of the high level requirements, that of being extremely efficient at issuance of value. Efficiency in digital issuance is primarily a function of support costs, and a major determinant of support costs is the costs of fraud and theft.
+
+One risk that consistently blew away any design for efficient digital value at reasonable cost was the risk of insider fraud. In our model of many users and a single centralised server, the issuers of the unit of digital value (as signatory to the contract) and any governance partners such as the server operators are powerful candidates for insider fraud. Events over the last few years such as the mutual funds and stockgate scandals are canonical cases of risks that we decided to address.
+
+In order to address the risk of insider fraud, the written receipt was historically introduced as being a primary source of evidence. Mostly forgotten to the buying public these days, the purpose of a written receipt in normal retail trade is not to permit returns and complaints by the customer, but rather to engage her in a protocol of documentation that binds the shop attendant into safekeeping of the monies. A good customer will notice fraud by the shop attendant and warn the owner to look out for the monies identified by the receipt; the same story applies to the invention of the cash till or register, which was originally just a box separating the owner's takings from the monies in the shop attendant's pockets. We extend this primary motive into the digital world by using a signed receipt to bind the Issuer into a governance protocol with the users.
+
+We also go several steps further forward. Firstly, to achieve a complete binding, Alice's original authorisation is also included within the record. The receipt then includes all the evidence of both the user's intention and the server's action in response, and it now becomes a dominating record of the event. This then means that the most efficient record keeping strategy is to drop all prior records and keep safe the signed receipt.
+
+This domination affects both the Issuer and the user, and allows us to state the following principle:
+
+The User and the Issuer hold the same information.
+
+As the signed receipt is delivered from Issuer to both users, all three parties hold the same dominating record for each event. This reduces support costs by dramatically reducing problems caused by differences in information.
+
+Secondly, we bind a signed contract of issuance known as a Ricardian Contract into the receipt[8]. This invention relates a digitally signed document securely to the signed receipt by means of a unique identifier called a message digest, again provided by cryptography. It provides strong binding for the unit of account, the nature of the issue, the terms, conditions and promises being made by the Issuer, and of course the identity of the Issuer.
+
+Finally, with these enabling steps in place, we can now introduce the principle:
+
+The Receipt is the Transaction.
+
+Within the full record of the signed receipt, the user's intention is expressed, and is fully confirmed by the server's response. Both of these are covered by digital signatures, locking these data down. A reviewer such as an auditor can confirm the two sets of data, and can verify the signatures.
+
+The Signed Receipt as a Bookkeeping system
+
+The principle of the Receipt as the Transaction has become sacrosact over time. In our client software, the principle has been hammered into the design consistently, resulting in a simplified accounting regime, and delivering a high reliability. Issues still remain, such as the loss of receipts and the counting of balances by the client side software, but these become reasonably tractable once the goal of receipts as transactions is placed paramount in the designer's mind.
+
+As Single Entry
+
+In order to calculate balances on a related set of receipts, or to present a transaction history, a book would be constructed on the fly from the set. This amounts to using the Signed Receipt as a basis for single entry bookkeeping. In effect, the bookkeeping is derived from the raw receipts, and this raises the question as to whether to keep the books in place.
+
+The principles of Relational Databases provide guidance here. The fourth normal form directs that we store the primary records, in this case the set of receipts, and we construct derivative records, the accounting books, on the fly[9].
+
+Recovering Double Entry
+
+Similar issues arise for Ivan the Issuer. The server has to accept each new transaction on the basis of the available balance in the effected books; for this reason Ivan needs those books to be available efficiently. Due to the greater number of receipts and books (one for each user account), both receipts and books will tend to exist, in direct contrast to fourth normal form. A meld between relationally sound sets of receipts and double entry books comes to assist here.
+
+Alice and Bob both are granted a book each within the server's architecture. As is customary, we place those books on the liabilities side. Receipts then can be placed in a separate single book and this could be logically placed on the assets side. Each transaction from Alice to Bob now has a logical contra entry, and is then represented in 3 places within the accounts of the server. Yet, the assets side remains in fourth normal form terms as the liabilities entries are derived, each pair from one entry on the assets side.
+
+By extension, a more sophisticated client-side software agent, working for Alice or Bob, could employ the same techniques. At this extreme, entries are now in place in three separate locations, and each holding potentially three records.
+
+Triple Entry Accounting
+
+The digitally signed receipt, with the entire authorisation for a transaction, represents a dramatic challenge to double entry bookkeeping at least at the conceptual level. The cryptographic invention of the digital signature gives powerful evidentiary force to the receipt, and in practice reduces the accounting problem to one of the receipt's presence or its absence. This problem is solved by sharing the records – each of the agents has a good copy.
+
+In some strict sense of relational database theory, double entry book keeping is now redundant; it is normalised away by the fourth normal form. Yet this is more a statement of theory than practice, and in the software systems that we have built, the two remain together, working mostly hand in hand.
+
+Which leads to the pairs of double entries connected by the central list of receipts; three entries for each transaction. Not only is each accounting agent led to keep three entries, the natural roles of a transaction are of three parties, leading to three by three entries.
+
+We term this triple entry bookkeeping. Although the digitally signed receipt dominates in information terms, in processing terms it falls short. Double entry book keeping fills in the processing gap, and thus the two will work better together than apart. In this sense, our term of triple entry bookkeeping recommends an advance in accounting, rather than a revolution.
+
+Software Considerations
+
+The precise layout of the entries in software and data terms is not settled, and may ultimately become one of those ephemeral implementation issues. The signed receipts may form a natural asset-side contra account, or they may be a separate non-book list underlying the bookkeeping system and its two sides.
+
+Auditing issues arise where construction of the books derives from the receipts, and normalisation issues arise when a receipt is lost. These are issues for future research.
+
+Likewise, it is worth stating that the technique of signing receipts works both with private key signatures and also with entanglement message digest signatures; whether the security aspects of these techniques is adequate to task is dependent on the business environment.
+
+Roles of the Agents
+
+It will be noted that the above design of triple entry bookkeeping assumed that Alice and Bob were agents of some independence. This was made possible, and reflected the usage of the system as a digital cash system, and not as a classical accounting system.
+
+Far from reducing the relevance of this work to the accounting profession, it introduces digital cash as an alternate to corporate bookkeeping. If an accounting system for a corporation or other administrative entity is recast as a system of digital cash, or internal money, then experience shows that benefits accrue to the organisation.
+
+Although the core of the system looks exactly like an accounting system, each department's books are pushed out as digital cash accounts. Departments no longer work so much with budgets as have control over their own corporate money. Fundamental governance control is still held within the accounting department by dint of their operation of the system, and by the limited scope of the money as only being usable within the organisation; the accounting department might step in as a market maker, exchanging payments in internal money for payments in external money to outside suppliers.
+
+We have operated this system on a small scale. Rather than be inefficient on such a small scale, the system has generated dramatic savings in coordination. No longer are bills and salaries paid using conventional monies; many transactions are dealt with by internal money transfers and at the edges of the corporation, formal and informal agents work to exchange between internal money and external money. Paperwork reduces dramatically, as the records of the money system are reliable enough to quickly resolve questions even years after the event.
+
+The innovations present in internal money go beyond the present paper, but suffice to say that they answer the obvious question of why this design of triple entry accounting sprung from the world of digital cash, and has relevence back to the corporate world.
+
+Patterns of Commerce
+
+Todd Boyle looked at a similar problem from the point of view of small business needs in an Internet age, and reached the same conclusion – triple entry accounting[10]. His starting premises were that:
+
+The major need is not accounting or payments, per se, but patterns of exchange – complex patterns of trade; Small businesses could not afford large complex systems that understood these patterns; They would not lock themselves into proprietary frameworks;
+
+From those foundations, Boyle concluded that therefore what is needed is a shared access repository that provides arms-length access. Fundamentally, this repository is akin to the classic double-entry accounting ledger of transaction rows ("GLT" for General Ledger - Transactions), yet its entries are dynamic and shared.
+
+Simple examples will help. When Alice forms a transaction, she enters it into her software. Every GLT transaction requires naming her external counterparty, Bob. When she posts the transaction, her software stores it in her local GLT and also submits it to the shared repository service's GLT.
+
+The Shared Transaction Repository ("STR") then forwards the transaction on to Bob. Both Bob and Alice are now expected to store the handle to the transaction as an index or stub, and the STR then stores the entire transaction.
+
+Boyle's ideas are logically comparable to Grigg and Howland's, although they arive from different directions (the STR is Grigg's Ivan, above) and are not totally equivalent. Where the latter limited themselves to payments, the accuracy of amounts, and protection with hard cryptographic shells, Boyle looked at wider patterns of transactions, and showed that the STR could mediate these transactions, if the core shared data could be extracted and made into a single shared record. Boyle's focus was on the economic substance of the transaction.
+
+Extending the Humble Invoice
+
+Imagine a simple invoicing procedure. Alice creates an invoice and posts it to her software (GLT). As she has named Bob, the GLT automatically posts it to Ivan, the STR, and he forwards it to Bob. At this point Bob has a decision to make, accept or reject. Assuming acceptance, his software can then respond by sending an acceptance message to Ivan. The STR now assembles an accepted invoice record to replace the earlier speculative invoice record and posts that threeways. At some related time (to do with payment policy) Bob also posts a separate transaction to pay for the invoice. This could operate in much the same way as a separate transaction, linking directly to the original invoice.
+
+Now, as the payment links back, and the invoice is a live transaction within the three entries in the three accounting systems, it is possible for a new updated invoice record to refer back to the payment activity. When the payment clears, the new record can again replace the older unpaid copy and promulgate to all three parties.
+
+Patterns of Transactions
+
+Software could be written to facilitate and monitor this flow and similar flows. If the payments system is sufficiently flexible, and integrated with the needs of the users, if might be possible to merge the above invoice with the payment itself, at the Receipts level. Seen in this light, the Signed receipt of Ricardo is simply the smallest and simplest pattern within the more general set of patterns. We could then suggest that the narrow principle of the Receipt is the Transaction could be extended into The Invoice is the Transaction.
+
+A particular transaction in business almost never stands alone. They come in patterns. For example offers and acceptances form a wider transaction but seldom encapsulate the entire fulfillment and payment cycle. Even if there has been a payment accompanying a PO message, the customer then waits for fulfillment.
+
+There is a large body of science and literature built around these patterns of transactions. These have been adopted by the Business Process workgroup of ebXML and other standards bodies, where they are called "Commercial Transactions." Where however the present work distinguishes itself is in breaking down these transactions into the atomic elements. It is to that we now turn.
+
+The Requirements of Triple Entry Accounting
+
+The implementation of Triple Entry Accounting will in time evolve to support patterns of transactions. What has become clear is that double entry does not sufficiently support these patterns, as it is a framework that breaks down as soon as the number of parties exceeds one. Yet, even as double entry is "broken" on the net and unable to support commercial demands, triple entry is not widely understood, nor are the infrastructure requirements that it imposes well recognised.
+
+Below are the list of requirements that we believed to be important[11][12].
+
+1. Strong Psuedonymity, At Least. As there are many cycles in the patterns, the system must support a clear relationship of participants. At the minimum this requires a nymous architecture of the nature of Ricardo or AADS. (This requirement is very clear, but space prevents any discussion of it.)
+
+2. Entry Signing. In order to neutralise the threats to and by the parties, a mechanism that freezes and confirms the basic data is needed. This is signing, and we require that all entries are capable of carrying digital signatures (see 1, above, which suggests public key signatures).
+
+3. Message Passing. The system is fundamentally one of message passing, in contrast to much of the net's connection based architecture. Boyle recognised early on that a critical component was the generic message passing nature, and Systemics proposed and built this into Ricardo over the period 2001-2004[13].
+
+4. Entry Enlargement and Migration. Each new version of a message coming in represents an entry that is either to be updated or added. As each message adds to a prior conversation, the stored entry needs to enlarge and absorb the new information, while preserving the other properties.
+
+5. Local Entry Storage and Reports. The persistent saving and responsive availability of entries. In practice, this is the classical accounting general ledger, at least in storage terms. It needs to bend somewhat to handle much more flexible entries, and its report capabilities become more key as they conduct instrinsic reconciliation on a demand or live basis.
+
+6. Integrated Hard Payments. Trade can only be as efficient as the payment. That means that the payment must be at least as efficient as every other part; which in practice means that a payment system should be built-in at the infrastructure level. C.f., Ricardo.
+
+7. Integrated Application-Level Messaging. As distinct to the messaging at the lower protocol levels (1 above), there is a requirement for Alice and Bob to be able to communicate. That is because the vast majority of the patterns turns around the basic communications of the agents. There is no point in establishing a better payment and invoice mechanism than the means of communication and negotiation. This concept is perhaps best seen in the SWIFT system which is a messaging system, first and foremost, to deliver instructions for payments.
+
+Conclusion
+
+Double Entry bookkeeping provides evidence of intent and origin, leading to strategies for dealing with errors of accident and fraud. The financial cryptography invention of the signed receipt provides the same benefits, and thus challenges the 800 year reign of double entry. Indeed, in evidentiary terms, the signed receipt is more powerful than double entry records due to the technical qualities of its signature.
+
+There remain some weaknesses in strict comparison with double entry bookkeeping. Firstly, in the Ricardo instantiation of triple entry accounting, the receipts themselves may be lost or removed, and for this reason we stress as a principle that the entry is the transaction. This results in three active agents who are charged with securing the signed entry as their most important record of transaction.
+
+Secondly, the software ramifications of the triple entry system that are less convenient than that offered by double entry bookkeeping. For this reason, we expand the information held in the receipt into a set of double entry books; in this way we have the best of both worlds on each node: the evidentiary power of the signed entries and the convenience and local crosschecking power of the double entry concept.
+
+Both of these imperitives meld signed receipts in with double entry bookkeeping. As we end up with a logical arrangement of three by three entries, we feel the term triple entry bookkeeping is useful to describe the advance on the older form.
+
+Drawing in the Agents
+
+To fully benefit from triple entry bookkeeping, we have to expand accounting systems out to agents and offer them direct capabilities to do transactions. That is, we make the agents stakeholders by giving them internal money[14]. Use of digital cash to do company accounts empowers the use of this concept as a general replacement for accounting using books and departmental budgets, and is an enabler for verifying and auditing the centralised accounts system by way of signed receipts.
+
+Solving Frauds
+
+Once there, governance receives substantial benefits. Accounts are now much more difficult to change, and much more transparent. It is our opinion that various scandals and failures of governance would have been impossible given these techniques: the mutual funds scandal would have shown a clear audit trail of transactions and thus late timing and otherwise perverted or dropped transactions would have been clearly identified or eliminated completely[15]. The emerging scandal in the USA known as Stockgate would have been impossible as forgery of shares and value for manipulative trading purposes is revealed by signed receipts. Likewise, Barings would still be a force in investment banking if accounts had been organised around easily transparent digital cash with open and irreducible signed receipts that evidence invisible accounts (88888). Enron style scandals would have permitted more direct "follow the money" governance lifting the veil on various innovative but economically meaningless swaps.
+
+References

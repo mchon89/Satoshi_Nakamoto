@@ -1,0 +1,221 @@
+Bitcoin and Me
+
+Hal Finney March 19, 2013 Originally posted on Bitcointalk
+
+I thought I'd write about the last four years, an eventful time for Bitcoin and me.
+
+For those who don't know me, I'm Hal Finney. I got my start in crypto working on an early version of PGP, working closely with Phil Zimmermann. When Phil decided to start PGP Corporation, I was one of the first hires. I would work on PGP until my retirement. At the same time, I got involved with the Cypherpunks. I ran the first cryptographically based anonymous remailer, among other activities.
+
+Fast forward to late 2008 and the announcement of Bitcoin. I've noticed that cryptographic graybeards (I was in my mid 50's) tend to get cynical. I was more idealistic; I have always loved crypto, the mystery and the paradox of it.
+
+When Satoshi announced Bitcoin on the cryptography mailing list, he got a skeptical reception at best. Cryptographers have seen too many grand schemes by clueless noobs. They tend to have a knee jerk reaction.
+
+I was more positive. I had long been interested in cryptographic payment schemes. Plus I was lucky enough to meet and extensively correspond with both Wei Dai and Nick Szabo, generally acknowledged to have created ideas that would be realized with Bitcoin. I had made an attempt to create my own proof of work based currency, called RPOW. So I found Bitcoin facinating.
+
+When Satoshi announced the first release of the software, I grabbed it right away. I think I was the first person besides Satoshi to run bitcoin. I mined block 70-something, and I was the recipient of the first bitcoin transaction, when Satoshi sent ten coins to me as a test. I carried on an email conversation with Satoshi over the next few days, mostly me reporting bugs and him fixing them.
+
+Today, Satoshi's true identity has become a mystery. But at the time, I thought I was dealing with a young man of Japanese ancestry who was very smart and sincere. I've had the good fortune to know many brilliant people over the course of my life, so I recognize the signs.
+
+After a few days, bitcoin was running pretty stably, so I left it running. Those were the days when difficulty was 1, and you could find blocks with a CPU, not even a GPU. I mined several blocks over the next days. But I turned it off because it made my computer run hot, and the fan noise bothered me. In retrospect, I wish I had kept it up longer, but on the other hand I was extraordinarily lucky to be there at the beginning. It's one of those glass half full half empty things.
+
+The next I heard of Bitcoin was late 2010, when I was surprised to find that it was not only still going, bitcoins actually had monetary value. I dusted off my old wallet, and was relieved to discover that my bitcoins were still there. As the price climbed up to real money, I transferred the coins into an offline wallet, where hopefully they'll be worth something to my heirs.
+
+Speaking of heirs, I got a surprise in 2009, when I was suddenly diagnosed with a fatal disease. I was in the best shape of my life at the start of that year, I'd lost a lot of weight and taken up distance running. I'd run several half marathons, and I was starting to train for a full marathon. I worked my way up to 20+ mile runs, and I thought I was all set. That's when everything went wrong.
+
+My body began to fail. I slurred my speech, lost strength in my hands, and my legs were slow to recover. In August, 2009, I was given the diagnosis of ALS, also called Lou Gehrig's disease, after the famous baseball player who got it.
+
+ALS is a disease that kills moter neurons, which carry signals from the brain to the muscles. It causes first weakness, then gradually increasing paralysis. It is usually fatal in 2 to 5 years. My symptoms were mild at first and I continued to work, but fatigue and voice problems forced me to retire in early 2011. Since then the disease has continued its inexorable progression.
+
+Today, I am essentially paralyzed. I am fed through a tube, and my breathing is assisted through another tube. I operate the computer using a commercial eyetracker system. It also has a speech synthesizer, so this is my voice now. I spend all day in my power wheelchair. I worked up an interface using an arduino so that I can adjust my wheelchair's position using my eyes.
+
+It has been an adjustment, but my life is not too bad. I can still read, listen to music, and watch TV and movies. I recently discovered that I can even write code. It's very slow, probably 50 times slower than I was before. But I still love programming and it gives me goals. Currently I'm working on something Mike Hearn suggested, using the security features of modern processors, designed to support "Trusted Computing", to harden Bitcoin wallets. It's almost ready to release. I just have to do the documentation.
+
+And of course the price gyrations of bitcoins are entertaining to me. I have skin in the game. But I came by my bitcoins through luck, with little credit to me. I lived through the crash of 2011. So I've seen it before. Easy come, easy go.
+
+That's my story. I'm pretty lucky overall. Even with the ALS, my life is very satisfying. But my life expectancy is limited. Those discussions about inheriting your bitcoins are of more than academic interest. My bitcoins are stored in our safe deposit box, and my son and daughter are tech savvy. I think they're safe enough. I'm comfortable with my legacy.
+
+[edited slightly]For-Pay Remailers
+
+Hal Finney October 28, 1994
+
+What if you could make money by running a remailer?
+
+Right now, most remailer operators are operating out of altruism. This is good in a lot of ways but it has its problems, as recent events have shown:
+
+lack of motivation to keep remailers operating when faced with hassles and possible legal risks
+
+ease of spamming attacks by malicious users
+
+lack of incentive for a commercial-quality remailer service
+
+I'm sure we can all think of more. I know that it would be a lot easier to justify continuing to run the remailer to myself if it were bringing in a few dollars a month.
+
+I think there are some experiments in for-pay remailers that have been tried. Sameer is, I think, charging for some services, although paerhaps that was just for anonymous return addresses. A long time ago Karl Barrus had a service which required pre-issued "digital postage stamps", but I don't think many people used it.
+
+The time may be ripe to look at this more seriously. Several factors are coming together:
+
+some efforts at standardization of remailer commands and cooperation of operators (e.g. this list)
+
+wider use of scripts and utility programs to help people use the remailers several competing real-money systems which have come online just in the last month or so which * let you get paid for things on the net
+
+To expand on these:
+
+It is obviously difficult to operate a remailer service that charges if other people are offering the equivalent service for free. Since it is pretty easy to start up a remailer, the marginal cost to do so is low, hence the profits are low, too. However, although it is easy to start a remailer, it is not so easy to keep one running in the face of complaints from recipients of abusive mail or inappropriate posts; hassles from sysops, owners, net feeds, or others upwards in that great chain of command; possible law enforcement problems when illegal communications occur; possible threats of lawsuits (such as from the scientologists when their sacred documents are posted), etc. So we should not be misled into thinking that running a remailer is cost free.
+
+On the other hand I should be clear that I would not expect to make a killing on this service. Something on the order of a penny a message seems reasonable just at a guess. Maybe it should be a factor of 10 higher or lower.
+
+One issue is of course the additional difficulty this will cause in the use of the remailer. There are several things to consider here. On the one hand you could argue that it is already too difficult to use the remailers, and any additional hassles involved with including some kind of payment tokens would kill the market. OTOH I can agree in spirit with the sentiments expressed here recently about the low quality which seems to characterize much of the use of the remailers.
+
+I don't look at messages, but occasionally I do see bounces, and very frequently they are ugly little flames or similar worthless material. Now, I hope that I am seeing the dregs, that the kinds of clueless people who make the mistakes which cause me to see the messages are the ones least likely to use the service in a worthwhile manner. But still, it is discouraging. In that context, maybe making the system a little harder to use would be worthwhile, in that it would screen out the casual harrasser. (Or, more realistically, this might just keep the exceptionally motivated harrassers.)
+
+In any case, I think the presence of the remailer scripts can make using a for-pay remailer not much more difficult than using a free one. If the cost is as low as I suggested and the inclusion of payment tokens is nearly automatic, then adding costs should not have much negative impact on use, certainly not on meaningful, worthwhile use.
+
+And even a modest cost might arrest the wholesale spamming that Detweiler and/or the recent "Scythe" seem to love. At least we would be paid for enduring the hassle of the complaints.
+
+Now, the next question is the details of the payment. Frankly, I don't think any of the current systems are quite right for us due to our special needs, but things are changing rapidly. Let me describe something about how they work.
+
+I know of two systems that are VISA/Mastercard based. One is called First Virtual (http://www.fv.com). They are oriented towards information sales and say that they aren't for service providers, but in practice it looked to me like they could be used for services. When a customer wants to pay, he sends you his FV ID. You send this to FV and they send an email message to the customer asking whether he authorizes the payment. If he says "yes", FV credits your account. You get a check every month. Customers who always say "no" get booted out of the system (as do merchants who submit bogus bills). They charge 29 cents plus 2 percent per transaction, but merchants can batch up multiple orders by a single customer before sending it in.
+
+There are a few problems with a system like this, many of which are somewhat generic to our situation. The most fundamental is that we don't know who our customers are much of the time. In fact, the whole point of the remailer network is that we not know that fact for any case except the first hop in the chain. If we required customers to expose their FV account ID at every hop, it would make it a lot easier to track messages through the network (even if the ID's were hidden in the encryption envelope it seems risky). If we then sent a message to FV saying that we needed to charge ID XXX, and FV responds with an email to the person's home address, this offers more possibilities for tracing.
+
+One solution would be only to charge on entry into the remailer net. Perhaps remailer operators would even charge each other then, and the first remailer would charge some larger amount to deal with a "typical" chain length? Many interesting possibilities here.
+
+Another issue is that the overhead charges by FV would require batching up messages before submitting them. Let me make clear that the batch must consist all of charges to a single user. It doesn't do any good to send one message to FV asking them to please charge a penny to each of 100 VISA accounts. No, you would have to count messages from each user, separately, and when user XXX had sent, say, $1 worth of messages, you could send in the request to FV and get back 70 or so cents.
+
+So this adds some overhead and record-keeping that we don't currently have to do, although perhaps it is not so difficult. But it would raise new questions of authenticating FV ID's, and shares some of the negative privacy impacts and message linking issues mentioned above.
+
+The other VISA based system is called OpenMarket. I just read about it tonight so I don't know it as well (http://www.openmarket.com). It is pretty tied to the WWW so it would not seem to work for us. Customers get connected to a particular WWW server which authenticates them and charges their VISA card appropriately, then they get redirected to the merchant with some kind of token that says they have paid.
+
+The NetBank (email to netbank-intro@agents.com) is a digital-cash like system. Customers get tokens which are basically large secret numbers which have a cash value. They send them to the merchants, and the merchants then send them to the bank which credits their account. The NetBank sends you a check every month.
+
+The interesting thing is how customers buy the cash tokens. One way is by connecting to a 900 number with your modem. They charge the customer $10.00 and give him a digital cash token worth that much. Another way is by faxing a check to them. I wasn't clear on how you get the cash token back in that case; I guess they email it to you at an address you specify. From the privacy point of view, these are not that great; 900 numbers have Automatic Number Identification so unless you are willing to tramp out to a pay phone to get your cash then it could be linked to your phone number. And the fax system must have some kind of return address that would link to you.
+
+The other problem with NetBank is that the smallest denomination which can be spent is 25 cents. Due to the cash-like nature of the tokens, I don't see a natural way to accumulate several messages into one payment. Maybe we could layer our own low-value digital cash system on top of NetBank, where users could buy our anonymous cash for 25 cents and get enough tokens for 25 messages, then we would settle amongst ourselves (or actually with the anon-mail-token bank). Actually this might help with the privacy problems, too. Anonymous digital cash is heavily patented, though.
+
+With a cash-like system, each message would include a numeric token in the header which is the digital cash. The remailer would strip that out and send it in for credit. This is a simple system and could be largely automatic. However there are some tricky issues about cheaters re-using cash.
+
+NetBank charges $4 per month, plus, for the 900-number-based cash, 20% off of face value.
+
+The last system I'll describe is David Chaum's DigiCash (http://www.digicash.com). Chaum is the inventor of digital cash and he certainly knows his stuff, plus as I said he has the intellectual property pretty well sewed up patent-wise. The DC payment system is also WWW based at present. The customer has to be running a special program on his computer, separate from his web browser. This program holds his digital cash, which is similar conceptually to the NetBank cash but more sophisticated cryptographically. When he wants to buy something, the merchant's web server makes a connection to the customer's DC program, and it transfers the cash to the merchant.
+
+DigiCash says they are planning an email based system but for now their emphasis is on the WWW. Right now they are only in beta and not using real money. I don't know when they will be real and email based, and I don't know if they have said what their commission will be. But when this comes up it may be the best approach if small-value transactions can be supported. DigiCash is fully anonymous in the sense that once a customer receives the money, it is "blinded" in a special cryptographic way so that the bank cannot associate it with that customer (and no one else can, either). This kind of anonymity fits in very well with our remailer requirements.
+
+Well, I know this is a lot of information to work through, but mostly I want people to be aware of the possibilities. Most of this stuff is very, very new, only weeks old, generally. Probably over the next few months we will see a lot more options appear. I am confident that there will soon be payment systems that would provide the technical basis for fee based remailing. I don't expect anyone to get rich by this, but it might help compensate for the risks we all face, and it might serve to improve the quality of the remailer network.
+
+Hal Finney
+
+hal@rain.org
+
+Hal Finney Home PagePolitics vs Technology
+
+Hal Finney January 2, 1994
+
+From: Mike Ingle <MIKEINGLE@delphi.com> > But could the government ban a book today? Of course not, at least not > after one person typed it or scanned it into a computer. Technological > gains are permanent. The political approach is only useful as a > tactical weapon, to hold them off until technological solutions are > in place. If you want to change the world, don't protest. Write code!
+
+This position seems to be fast becoming cypherpunks dogma, but I don't agree. The notion that we can just fade into cypherspace and ignore the unpleasant political realities is unrealistic, in my view.
+
+Have people forgotten the Clipper proposal, with the possible follow-on to make non-Clipper encryption illegal? To the extent this proposal has been or will be defeated, it will happen through political maneuvering, not technology.
+
+Have people forgotten the PGP export investigation? Phil Zimmermann hasn't. He and others may be facing the prospect of ten years in prison if they were found guilty of illegal export. If anyone has any suggestions for how to escape from jail into cyberspace I'd like to hear about them.
+
+Mike's SecureDrive is a terrific program for protecting privacy. But if we want to keep keys secret from politically-motivated investigations, we have to rely on the very political and non-technological Fifth Amendment (an amendment which Mike Godwin of EFF and others contend does not actually protect disclosure of cryptographic keys). Again, we need to win political, not technological, victories in order to protect our privacy.
+
+I even question Mike's point about the government's inability to ban books. Look at the difficulty in keeping PGP available in this country even though it is legal. Not only have FTP sites been steadily closed down, even the key servers have as well. And this is legal software.
+
+Sure, this software is currently available overseas, but that is because PGP's only legal limitations are the U.S. patent issues. Imagine how much worse it would be if non-escrowed encryption were made illegal in a broad range of countries, with stringent limits on net access to countries which promote illegal software? Here again, these kinds of decisions will be made in the political realm.
+
+Fundamentally, I believe we will have the kind of society that most people want. If we want freedom and privacy, we must persuade others that these are worth having. There are no shortcuts. Withdrawing into technology is like pulling the blankets over your head. It feels good for a while, until reality catches up. The next Clipper or Digital Telephony proposal will provide a rude awakening.
+
+Hal Finney
+
+hal@rain.org
+
+Hal Finney Home PagePGP Web of Trust Misconceptions
+
+Hal Finney March 30, 1994
+
+One of the key concepts widely used to describe PGP is the "web of trust". This brings to mind a network of connections between people who know and communicate with each other. Two people who want to communicate can do so securely if there is a path of connections in the form of signed keys that joins them.
+
+But this is not quite right. The fundamental fact about PGP key signatures, which is often misunderstood, is this:
+
+You can only communicate securely with someone whose key is signed by a person you know, either personally or by reputation.
+
+In other words, if I want to communicate with joe@abc.com, I can only do so if one of the signators of his key is a person I know. If not, I have no way of judging the validity of his key.
+
+This belies simple interpretations of the "web of trust". I may have signed A's key, A has signed B's, B has signed C's, C has signed D's, and D has signed Joe's, but this is of no value unless I know D. Only then can I trust Joe's key.
+
+This means that, in the "web" picture, I can only communicate securely with people who are at most two hops away in the web of connections. I can communicate with the people I know, and I can communicate with the people they know, and that is it.
+
+This is unfortunate, because the simple web model ties into some famous research which suggests that any two people chosen at random are only about half a dozen steps apart in the web of who-knows-whom connections. (This result is where the title of the movie "Six Degrees of Separation" comes from.) If you had a system which actually supported communications via such a web model, it actually would have hope of letting two people communicate who did not have a very long chain between them. But PGP, with a maximum chain length of two, will not allow this.
+
+What would have to be added in order to allow a true web of trust model to be used in a program like PGP? Basically what is needed is some way to judge the trustworthyness of signatures by people you don't know. This would most plausibly be provided by the people who had signed their keys. For example, if there were another type of key signature which did not only vouch for the person's identity, but also for his trustworthyness and care in signing keys, then a chain of such signatures could serve as the basis for a true web of trust. Obviously such signatures could not be given out nearly as easily as the kind we have now, where a glance at some stranger's drivers' licence is often all we get, but they could be given to close friends and those we know and trust.
+
+More elaborate systems might include numerical ratings of trustworthiness which would help to estimate the strength of any given path. The main point is that some information of this kind would be needed in order to allow communication with people distant in the web of connections.
+
+Without this, I think we will continue to have problems with PGP being unable to validate keys of people we want to communicate with. People will collect huge laundry lists of signatures in the hopes that whoever wants to communicate with them will know one of those people. Centralized key validators will appear (as in the case of the SLED service being started now, which will sign a key based on a signed check with your name on it). The result may be a choice between using an unsigned key or using one signed by some faceless bureaucracy, which is no better than the original PEM conception.
+
+(People may be confused by this essay because they thought PGP worked this way already. PGP does have a follow-the-web model, but that is only for following signatures. In the example above, where I wanted to talk to Joe and there was a chain to him through A, B, C, and D, we have to first suppose that I know and trust all of A, B, C, and D. Given that, what PGP can do is to determine whether I have valid keys for all of those people. It will notice that A has signed B's key, so it is valid. I know B and told PGP he was trustworthy, and he signed C's key, so therefore that one is valid. Similarly, I know C and I know D so PGP can follow the chain through them. Finally we come to Joe, whom I don't know, but because I know D and PGP followed the web to determine that D's key is valid, PGP can determine that Joe's key is valid. But again, that was only because I knew D and everyone else in the chain. The bottom line is still that I can only communicate with people who know someone I know.)
+
+Hal Finney
+
+hal@rain.org
+
+Hal Finney Home PageRPOW – Reusable Proofs of Work
+
+Hal Finney August 15, 2004
+
+Archived website GitHub
+
+To: cypherpunks@al-qaeda.net Subject: RPOW - Reusable Proofs of Work Date: Sun, 15 Aug 2004 10:43:09 -0700 (PDT) From: hal at finney dot org ("Hal Finney")
+
+I'd like to invite members of this list to try out my new hashcash-based server, rpow.net.
+
+This system receives hashcash as a Proof of Work (POW) token, and in exchange creates RSA-signed tokens which I call Reusable Proof of Work (RPOW) tokens. RPOWs can then be transferred from person to person and exchanged for new RPOWs at each step. Each RPOW or POW token can only be used once but since it gives birth to a new one, it is as though the same token can be handed from person to person.
+
+Because RPOWs are only created from equal-value POWs or RPOWs, they are as rare and "valuable" as the hashcash that was used to create them. But they are reusable, unlike hashcash.
+
+The new concept in the server is the security model. The RPOW server is running on a high-security processor card, the IBM 4758 Secure Cryptographic Coprocessor, validated to FIPS-140 level 4. This card has the capability to deliver a signed attestation of the software configuration on the board, which any (sufficiently motivated) user can verify against the published source code of the system. This lets everyone see that the system has no back doors and will only create RPOW tokens when supplied with POW/RPOW tokens of equal value.
+
+This is what creates trust in RPOWs as actually embodying their claimed values, the knowledge that they were in fact created based on an equal value POW (hashcash) token.
+
+I have a lot more information about the system at rpow.net, along with downloadable source code. There is also a crude web interface which lets you exchange POWs for RPOWs without downloading the client.
+
+This system is in early beta right now so I'd appreciate any feedback if anyone has a chance to try it out. Please keep in mind that if there are problems I may need to reload the server code, which will invalidate any RPOW tokens which people have previously created. So don't go too crazy hoarding up RPOWs quite yet.
+
+Thanks very much -
+
+Hal FinneyDigital Cash & Privacy
+
+Hal Finney August 19, 1993
+
+I agree with Anonymous that there are problems with the actual use of digital cash in the near term. But it depends to some extent on what problem you are trying to solve.
+
+One concern I have is that the move to electronic payments will decrease personal privacy by making it easier to log and record transactions. Dossiers could be built up which would track the spending patterns of each of us.
+
+Already, when I order something over the phone or electronically using my Visa card, a record is kept of exactly how much I spent and where I spent it. As time goes on, more transactions may be done in this way, and the net result could be a great loss of privacy.
+
+Paying in cash is still possible through the mail, but it is insecure and inconvenient. I think that the convenience of credit and debit cards will overcome most people’s privacy concerns and that we will find ourselves in a situation where great volumes of information exist about people’s private lives.
+
+This is a place that I could see digital cash playing a role. Imagine a Visa-like system in which I am not anonymous to the bank. In this model, imagine that the bank is granting me credit similar to a credit card. But instead of giving me just an account number which I read over the phone or send in an email message, it gives me the right to request digital cash on demand.
+
+I keep some digital cash around and spend it for transactions as I described in my previous posts. When I get low I send some email to the bank and get some more dcash. Every month I send a check to the bank to cover my account just as I do with my credit cards. My relations with the bank are very similar to my current relationships with the credit card companies: frequent withdrawals and a single payment each month by check.
+
+This has several advantages over the system which we are heading towards. No records are kept of where I spend my money. All the bank knows is how much I have withdrawn each month; I may or may not have spent it at that time. For some transactions (e.g. software) I could be anonymous to the vendor; for others the vendor might know my real address, but still no central location is able to track everything I buy.
+
+(There is also a security advantage over the ridiculous current system in which knowing a 16 digit number and an expiration date allows anyone to order anything in my name!)
+
+Furthermore, I don’t see why this system could not be as legal as current credit cards. All that really differs in this system is the inability to track where users spend their money, and as far as I know this ability was never an important legal aspect of credit cards. Certainly nobody will admit today that the government has a vested interest in moving towards an environment in which every financial transaction is tracked.
+
+Granted, this does not provide full anonymity. It is still possible to see roughly how much each person spends (although nothing stops a person from withdrawing much more cash than he will spend in a given month, except perhaps for interest expenses; but maybe he can lend the extra digicash itself and gain interest on that to compensate). And it is oriented around the same customer/vendor model that Anonymous criticized. But I maintain that this model represents the majority of electronic transactions, today and in the near future.
+
+It’s worth noting that it is not trivial to become a merchant who can accept credit cards. I went through this with a business I had a couple of years ago. We were selling software through mail order, and this makes the credit card companies very nervous. There is so much phone fraud in which credit card numbers are accumulated over a few months, then large amounts of charges made against them. By the time the user receives his monthly statement and complains, the vendor has disappeared. In order to get our credit card terminal we went to a company which “helps” startups with this. They seemed like a pretty shady outfit, themselves. We had to fudge our application to say that we’d be selling something like 50% of the units at trade shows, which apparently counted as over-the-counter sales. And we had to pay about $3,000 up front, as a bribe, it seemed. Even then we probably couldn’t have done it if we hadn’t had an office in the business district.
+
+Under the digital cash system, this might be less of a problem. The main problem with digital cash is double-spending, and if you are willing to go with online verification (reasonable for any business which is going to take anything over several hours to deliver the merchandise) this can be completely prevented. So there is no longer any possibility of merchants collecting credit card numbers for later fraud. (You still have problems with non-delivery of merchandise, though, so not all risks are eliminated.) This might eventually make the system more widely available than current credit cards.
+
+I don’t know whether this system could be used to support illegal actions, tax evasion, gambling, or whatever. That is not the purpose of this proposal. It does offer the prospect of improving personal privacy and security, in a framework that might even be legal, and that’s not bad.
+
+Hal Finney
+
+hal@rain.org
+
+Hal Finney Home Page
